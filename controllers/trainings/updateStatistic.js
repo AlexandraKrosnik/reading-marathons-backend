@@ -29,7 +29,7 @@ const updateStatistic = async (req, res) => {
 
       const newPages =
         readPages > Number(isBook.book.pages) ? isBook.book.pages : readPages;
-      isBook.result = [...isBook.result, { date, pages: newPages }];
+      isBook.result = [...isBook.result, { date, pages }];
 
       isBook.statisticsPages.readPages = newPages;
       await training.save();
