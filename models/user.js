@@ -42,7 +42,7 @@ const joiRegisterSchema = Joi.object({
 
 const joiLoginSchema = Joi.object({
   email: Joi.string().pattern(regEmail),
-  password: Joi.string().min(6).required(),
+  password: Joi.string().min(5).required(),
   token: Joi.string(),
 });
 

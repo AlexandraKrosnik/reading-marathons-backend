@@ -15,7 +15,7 @@ const updateBook = async (req, res) => {
   const isImageSame = body.image === bookPreviousVersion.image.url;
   let newImage;
   if (!isImageSame) {
-    const { url, public_id } = await cloudinary.uploader.upload(
+    const { url, public_id: publicId } = await cloudinary.uploader.upload(
       body.image,
       { public_id: bookPreviousVersion.image.public_id },
 
@@ -26,7 +26,7 @@ const updateBook = async (req, res) => {
     );
     newImage = {
       url,
-      public_id,
+      public_id: publicId,
     };
   }
   const bookUpdate = {
