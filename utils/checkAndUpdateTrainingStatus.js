@@ -5,7 +5,6 @@ const checkAndUpdateTrainingStatus = (training) => {
   const currentDate = new Date();
 
   const isAllFinishedBooks = training.statistics.filter((statistic) => {
-    // console.log(statistic);
     return (
       Number(statistic.book.pages) !==
       Number(statistic.statisticsPages.readPages)
