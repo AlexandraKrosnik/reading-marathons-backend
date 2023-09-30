@@ -11,14 +11,21 @@ const getAll = async (req, res) => {
     return Promise.all(
       training.statistics.map(async ({ book }) => {
         let bookStatus = "now";
+
         if (book.leftPages === 0) {
-          bookStatus = book.readTimes > 0 ? "already" : "plan";
+          if (book.readTimes > 0) {
+            bookStatus = "already";
+          } else {
+            bookStatus = "plan";
+          }
         }
+
         const updatedBook = await Book.findByIdAndUpdate(
           book._id,
           {
             inTraining: false,
             status: bookStatus,
+            leftPages: bookStatus === "already" ? book.pages : book.leftPages,
           },
           {
             new: true,
